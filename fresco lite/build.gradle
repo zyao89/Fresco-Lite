@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "0.12.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-fresco.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            // .so文件根目录
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:support-v4:23.+'
+    compile 'com.android.support:appcompat-v7:23.+'
+    provided "com.google.code.findbugs:jsr305:3.0.0"
+    provided "javax.annotation:javax.annotation-api:1.2"
+    compile files('libs/bolts-tasks-1.4.0.jar')
+    compile files('libs/library-2.4.0.jar')
+}
